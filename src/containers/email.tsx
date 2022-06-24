@@ -7,6 +7,7 @@ export const Email = ()=>{
   const changeHandler = (event:React.ChangeEvent<HTMLInputElement>) => {
       setText(event.target.value)
   } 
+  
   const validation = () =>{
     const regular = /^[\w-\.]+@[\w-]+\.[a-z]{2,4}$/i
     console.log(regular.test(text))
