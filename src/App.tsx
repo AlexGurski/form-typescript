@@ -7,12 +7,9 @@ import { Message } from './containers/message';
 function App() {
   return (
     <div className="App">
-      <div id="container">
+      <div className="container">
         <h1>&bull; Keep in Touch &bull;</h1>
-        <div className="underline">
-        </div>
-        <div className="icon_wrapper">   
-        </div>
+        <div className="underline"></div>
         <form action="#" method="post" id="contact_form" noValidate >
           <Name/>
           <Email/>
