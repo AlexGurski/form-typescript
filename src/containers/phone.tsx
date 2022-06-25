@@ -1,6 +1,6 @@
-import React, { useState,useRef } from 'react';
+import React, { useState,useRef, useEffect } from 'react';
 
-export const Phone = ()=>{
+export const Phone:React.FC<{setPhoneInSolve(phone:object):void}> = props =>{
   const [state, setState] = useState<string>("+7")
   const [textError, setTextError] = useState<string>("input is empty")
   const ref = useRef<HTMLInputElement>(null)
@@ -13,6 +13,13 @@ export const Phone = ()=>{
 const focus = () =>{
     setStyle({opacity:0})  
 }
+
+useEffect(()=>{
+  props.setPhoneInSolve({phone:{
+      valid:textError==='true'?true:false,
+      text:state
+  }})
+},[textError])
 
   const change = (event:React.ChangeEvent<HTMLInputElement>) =>{
     let val = event.target.value;

@@ -29,20 +29,20 @@ function App() {
       text:""
     }
   })
-
+console.log(solve)
   return (
     <div className="App">
       <div className="container">
         <h1>&bull; Keep in Touch &bull;</h1>
         <div className="underline"></div>
         <form action="#" method="post" id="contact_form" noValidate >
-          <Name/>
-          <Email/>
-          <Phone/>
+          <Name setNameInSolve={(name:object)=>{setSolve({...solve, name})}}/>
+          <Email setEmailInSolve={(email:object)=>{setSolve({...solve, email})}}/>
+          <Phone setPhoneInSolve={(phone:object)=>{setSolve({...solve, phone})}}/>
           <div className="date">
             <input type="date" name="date" id="date_input"/>
           </div>  
-          <Message/>  
+          <Message setMessageInSolve={(message:object)=>{setSolve({...solve, message})}}/>  
           <div className="submit">
             <input type="submit" value="Send" id="form_button" />
           </div>

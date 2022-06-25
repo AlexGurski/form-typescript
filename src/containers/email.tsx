@@ -1,11 +1,18 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 
-export const Email = ()=>{
+export const Email:React.FC<{setEmailInSolve(name:object):void}> = props =>{
   const [text, setText] = useState<string>("")
   const [textError, setTextError] = useState<string>("input is empty")
   const ref = useRef<HTMLInputElement>(null)
   const [style, setStyle] = useState<object>({opacity:0})
 
+  useEffect(()=>{
+    props.setEmailInSolve({message:{
+        valid:textError==='true'?true:false,
+        text:text
+    }})
+  },[textError])
+  
   const blur = ()=>{
     if (textError!=="true")                    
         setStyle({opacity:1})         

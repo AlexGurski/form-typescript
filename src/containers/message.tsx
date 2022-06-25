@@ -1,11 +1,18 @@
 import React, { useRef, useState, useEffect} from 'react';
 
-export const Message = ()=>{
+export const Message:React.FC<{setMessageInSolve(message:object):void}> = props =>{
   const ref = useRef<HTMLTextAreaElement>(null)
   const [counter,setCounter] = useState<number>(300)
   const [style, setStyle] = useState<object>({opacity:0})
   const [text, setText] = useState<string>("")
   const [textError, setTextError] = useState<string>("input is empty")
+
+  useEffect(()=>{
+    props.setMessageInSolve({message:{
+        valid:textError==='true'?true:false,
+        text:text
+    }})
+  },[textError])
 
   const changeHandler = (event:React.ChangeEvent<HTMLTextAreaElement>) => {
     if (event.target.value.length < 300){
