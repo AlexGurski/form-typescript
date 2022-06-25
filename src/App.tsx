@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Name } from './containers/name';
 import { Email } from './containers/email';
 import { Phone } from './containers/phone';
 import { Message } from './containers/message';
+import { Date } from './containers/date';
 
 
 function App() {
+  const ref = useRef<HTMLInputElement>(null)
 
   const [solve, setSolve] = useState<object>({
     name:{
@@ -29,7 +31,19 @@ function App() {
       text:""
     }
   })
-console.log(solve)
+
+  useEffect(()=>{
+    let rez = 0;
+    Object.values(solve).forEach(e=>e.valid?rez=rez+1:null)
+    if (rez===5){
+      ref.current!.classList.add("enable");
+      ref.current!.classList.remove("disable");
+    } else{
+      ref.current!.classList.add("disable");
+      ref.current!.classList.remove("enable");
+    }
+  },[solve])
+
   return (
     <div className="App">
       <div className="container">
@@ -39,12 +53,14 @@ console.log(solve)
           <Name setNameInSolve={(name:object)=>{setSolve({...solve, name})}}/>
           <Email setEmailInSolve={(email:object)=>{setSolve({...solve, email})}}/>
           <Phone setPhoneInSolve={(phone:object)=>{setSolve({...solve, phone})}}/>
-          <div className="date">
-            <input type="date" name="date" id="date_input"/>
-          </div>  
+          <Date setDateInSolve={(date:object)=>{setSolve({...solve, date})}}/>
           <Message setMessageInSolve={(message:object)=>{setSolve({...solve, message})}}/>  
           <div className="submit">
-            <input type="submit" value="Send" id="form_button" />
+            <input 
+            ref={ref}
+            className='form_button' 
+            type="submit" 
+            value="Send" />
           </div>
         </form>
       </div>

@@ -15,10 +15,10 @@ const focus = () =>{
 }
 
 useEffect(()=>{
-  props.setPhoneInSolve({phone:{
+  props.setPhoneInSolve({
       valid:textError==='true'?true:false,
       text:state
-  }})
+  })
 },[textError])
 
   const change = (event:React.ChangeEvent<HTMLInputElement>) =>{

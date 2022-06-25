@@ -7,10 +7,10 @@ export const Email:React.FC<{setEmailInSolve(name:object):void}> = props =>{
   const [style, setStyle] = useState<object>({opacity:0})
 
   useEffect(()=>{
-    props.setEmailInSolve({message:{
+    props.setEmailInSolve({
         valid:textError==='true'?true:false,
         text:text
-    }})
+    })
   },[textError])
   
   const blur = ()=>{
@@ -21,7 +21,7 @@ const focus = () =>{
     setStyle({opacity:0})  
 }
 
-  const changeHandler = async (event:React.ChangeEvent<HTMLInputElement>) => {
+  const changeHandler = (event:React.ChangeEvent<HTMLInputElement>) => {
     setText(event.target.value.replace(/[^A-Za-z0-9_.@]/ig,''));
     validation();
   } 

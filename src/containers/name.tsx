@@ -21,10 +21,10 @@ export const Name:React.FC<{setNameInSolve(name:object):void}> = props =>{
     }
 
     useEffect(()=>{
-            props.setNameInSolve({name:{
+            props.setNameInSolve({
                 valid:textError==='true'?true:false,
                 text:text
-            }})
+            })
     },[textError])
 
     const validation = () =>{

@@ -103,8 +103,7 @@ textarea {
 	resize: none;
     width: 100%;
 }
-#form_button {
-    background: none;
+.form_button {
     border: solid 2px #474544;
     color: #474544;
     cursor: pointer;
@@ -165,4 +164,12 @@ textarea {
   input[type='text'], [type='email'], select, textarea {
     font-size: 0.875em;
   }
+}
+.disable{
+  background: grey;
+  pointer-events: none;
+}
+.enable{
+  pointer-events: all;
+  background: none;
 }

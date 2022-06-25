@@ -8,10 +8,10 @@ export const Message:React.FC<{setMessageInSolve(message:object):void}> = props 
   const [textError, setTextError] = useState<string>("input is empty")
 
   useEffect(()=>{
-    props.setMessageInSolve({message:{
+    props.setMessageInSolve({
         valid:textError==='true'?true:false,
         text:text
-    }})
+    })
   },[textError])
 
   const changeHandler = (event:React.ChangeEvent<HTMLTextAreaElement>) => {
