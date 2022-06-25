@@ -1,10 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Name } from './containers/name';
 import { Email } from './containers/email';
-import './assets/style/form.css'
 import { Phone } from './containers/phone';
 import { Message } from './containers/message';
+
+
 function App() {
+
+  const [solve, setSolve] = useState<object>({
+    name:{
+      valid:false,
+      text:""
+    },
+    email:{
+      valid:false,
+      text:""
+    },
+    phone:{
+      valid:false,
+      text:""
+    },
+    date:{
+      valid:false,
+      text:""
+    },
+    message:{
+      valid:false,
+      text:""
+    }
+  })
+
   return (
     <div className="App">
       <div className="container">
