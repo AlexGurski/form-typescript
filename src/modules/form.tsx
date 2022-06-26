@@ -5,7 +5,7 @@ import { Phone } from '../containers/phone';
 import { Message } from '../containers/message';
 import { Date } from '../containers/date';
 
-export const Form:React.FC<{toPoppup(date:object):void}> = props =>{
+export const Form:React.FC<{toPoppup(date:object):void, toPreloader(preload:boolean):void}> = props =>{
 
   const refButton = useRef<HTMLInputElement>(null)
   const refForm = useRef<HTMLFormElement>(null)
@@ -53,6 +53,7 @@ export const Form:React.FC<{toPoppup(date:object):void}> = props =>{
     }
     
   async function send() {
+    props.toPreloader(true)
     try{   
     const response = await fetch('/', {
       method: 'POST',
@@ -89,9 +90,11 @@ export const Form:React.FC<{toPoppup(date:object):void}> = props =>{
         text:'server not found'
     })
 }
+props.toPreloader(false)
 }
   return (
         <form action="/" method="post" ref={refForm} id="contact_form" noValidate >
+          
           <Name setNameInSolve={(name:object)=>{setSolve({...solve, name})}}/>
           <Email setEmailInSolve={(email:object)=>{setSolve({...solve, email})}}/>
           <Phone setPhoneInSolve={(phone:object)=>{setSolve({...solve, phone})}}/>
