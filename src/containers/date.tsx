@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React from 'react';
 
 export const Date:React.FC<{setDateInSolve(date:object):void}> = props =>{
  const change = (event:React.ChangeEvent<HTMLInputElement>) => {
@@ -10,7 +10,6 @@ export const Date:React.FC<{setDateInSolve(date:object):void}> = props =>{
     return(
     <div className="date">
       <input 
-
       onChange={change}
       type="date" 
       name="date" 

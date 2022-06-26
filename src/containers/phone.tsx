@@ -6,10 +6,11 @@ export const Phone:React.FC<{setPhoneInSolve(phone:object):void}> = props =>{
   const ref = useRef<HTMLInputElement>(null)
   const [style, setStyle] = useState<object>({opacity:0})
 
-  const blur = ()=>{
+const blur = ()=>{
     if (textError!=="true")                    
         setStyle({opacity:1})         
 }
+
 const focus = () =>{
     setStyle({opacity:0})  
 }

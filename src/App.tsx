@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
-import { Form } from './modules/form';
-import { Poppup } from './modules/poppup';
+import { Form } from './containers/form';
+import { Poppup } from './containers/poppup';
 
 function App() {
   const [status,setStatus]=useState<object>({})

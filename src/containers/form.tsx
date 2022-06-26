@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { Name } from '../containers/name';
-import { Email } from '../containers/email';
-import { Phone } from '../containers/phone';
-import { Message } from '../containers/message';
-import { Date } from '../containers/date';
-
+import { Name } from './name';
+import { Email } from './email';
+import { Phone } from './phone';
+import { Message } from './message';
+import { Date } from './date';
+import { lastValidation, JSONtoSend } from '../modules/validation';
 export const Form:React.FC<{toPoppup(date:object):void, toPreloader(preload:boolean):void}> = props =>{
 
   const refButton = useRef<HTMLInputElement>(null)
@@ -41,16 +41,6 @@ export const Form:React.FC<{toPoppup(date:object):void, toPreloader(preload:bool
         refButton.current!.classList.remove("enable");
     }
     },[solve])
-
-  const lastValidation = (obj:object) =>{
-    let rez = 0;
-    Object.values(obj).forEach(e=>e.valid?rez=rez+1:null)
-    return rez===5?true:false
-  }
-
-  const JSONtoSend = (obj:object) =>{
-    return lastValidation(obj)?JSON.stringify({...obj,status:true}):JSON.stringify({status:false})
-    }
     
   async function send() {
     props.toPreloader(true)
@@ -71,17 +61,21 @@ export const Form:React.FC<{toPoppup(date:object):void, toPreloader(preload:bool
                 status:true,
                 text:responseOBJ.text
             })
-            console.log(`it's OK, your JSON is ${responseOBJ.text}`);
+           // console.log(`it's OK, your JSON is ${responseOBJ.text}`);
         } else{
             props.toPoppup({
                 status:false,
                 text:responseOBJ.text
             })
-            console.log(`${responseOBJ.status} status,  ${responseOBJ.text}`)
+            //console.log(`${responseOBJ.status} status,  ${responseOBJ.text}`)
         }  
     }
     else{
-        console.log(`${responseOBJ.status}status, ${responseText}`)
+      props.toPoppup({
+        status:false,
+        text:responseOBJ.text
+    })
+        //console.log(`${responseOBJ.status}status, ${responseText}`)
     }
 }  catch (error) {
     console.log ('server not found')
@@ -93,8 +87,7 @@ export const Form:React.FC<{toPoppup(date:object):void, toPreloader(preload:bool
 props.toPreloader(false)
 }
   return (
-        <form action="/" method="post" ref={refForm} id="contact_form" noValidate >
-          
+        <form action="/" method="post" ref={refForm} id="contact_form" noValidate >          
           <Name setNameInSolve={(name:object)=>{setSolve({...solve, name})}}/>
           <Email setEmailInSolve={(email:object)=>{setSolve({...solve, email})}}/>
           <Phone setPhoneInSolve={(phone:object)=>{setSolve({...solve, phone})}}/>
