@@ -96,14 +96,12 @@ export const Form:React.FC<{toPoppup(date:object):void}> = props =>{
           <Email setEmailInSolve={(email:object)=>{setSolve({...solve, email})}}/>
           <Phone setPhoneInSolve={(phone:object)=>{setSolve({...solve, phone})}}/>
           <Date setDateInSolve={(date:object)=>{setSolve({...solve, date})}}/>
-          <Message setMessageInSolve={(message:object)=>{setSolve({...solve, message})}}/>  
-          <div className="submit">
+          <Message setMessageInSolve={(message:object)=>{setSolve({...solve, message})}}/>         
             <input 
-            ref={refButton}
-            className='form_button' 
-            onClick={send}
-            defaultValue="Send" />
-          </div>
+                ref={refButton}
+                className='form_button' 
+                onClick={send}
+                defaultValue="Send"/>         
         </form>
 )
 }

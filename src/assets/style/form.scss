@@ -9,34 +9,20 @@ font-family: 'Montserrat', Arial, sans-serif;
   justify-content: center;
 }
 
-button {
-  overflow: visible;
-}
-
-button, select {
-  text-transform: none;
-}
-
 button, input, select, textarea {
   color: #5A5A5A;
   font: inherit;
-  margin: 0;
-}
-
-input {
-  line-height: normal;
-}
-
-textarea {
-  overflow: auto;
- 
+  margin: 20px 0;
 }
 
 .container {
   border: solid 3px #474544;
-  max-width: 768px;
-  margin: 60px auto;
+  width: 550px;
+  margin: 60px auto 5px;
   position: relative;
+  @media screen and (max-width: 555px) {
+      width: 95vw;
+  }
   h1 {
     color: #474544;
     font-size: 32px;
@@ -44,20 +30,51 @@ textarea {
     letter-spacing: 7px;
     text-align: center;
     text-transform: uppercase;
-  }
-  
+  }  
   .underline {
     border-bottom: solid 2px #474544;
-    margin: -0.512em auto;
+    margin: 0em auto;
     width: 80px;
   }
   form {
-    padding: 37.5px;
-    margin: 50px 0;
+    padding: 10px 37.5px 37.5px;     
+      input[type='text'], [type='email'],[type='date'], select, textarea {
+        background: none;
+        border: none;
+        border-bottom: solid 2px #474544;
+        color: #474544;
+        font-size: 1.000em;
+        font-weight: 400;
+        letter-spacing: 1px;
+        margin:2.875em 0 0  0;
+        padding: 0 0 0.875em 0;
+        text-transform: uppercase;
+        width: 100%;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -ms-box-sizing: border-box;
+        -o-box-sizing: border-box;
+        box-sizing: border-box;
+        -webkit-transition: all 0.3s;
+        -moz-transition: all 0.3s;
+        -ms-transition: all 0.3s;
+        -o-transition: all 0.3s;
+        transition: all 0.3s;
+          &:focus{
+          outline: none;
+        padding: 0 0 0.875em 0;
+          }
+      }
       .tooltip{
         transition: all 0.7s;
         margin-top: 5px;
         position: absolute;
+        margin-left: auto;
+        margin-right: auto;
+        width: max-content;
+        left: 0;
+        right: 0;
+        text-align: center;
         z-index: 2;
         background-color: #0f0f0f4b;
         color:red;
@@ -65,118 +82,49 @@ textarea {
         padding: 5px 10px;
         box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
       }
-   
-  }
-
-input[type='text'], [type='email'],[type='date'], select, textarea {
-	background: none;
-  border: none;
-	border-bottom: solid 2px #474544;
-	color: #474544;
-	font-size: 1.000em;
-  font-weight: 400;
-  letter-spacing: 1px;
-	margin:2.875em 0 0  0;
-	padding: 0 0 0.875em 0;
-  text-transform: uppercase;
-	width: 100%;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	-ms-box-sizing: border-box;
-	-o-box-sizing: border-box;
-	box-sizing: border-box;
-	-webkit-transition: all 0.3s;
-	-moz-transition: all 0.3s;
-	-ms-transition: all 0.3s;
-	-o-transition: all 0.3s;
-	transition: all 0.3s;
-    &:focus{
-    outline: none;
-	padding: 0 0 0.875em 0;
-    }
-}
-
-
-textarea {
-	line-height: 150%;
-	height: 150px;
-	resize: none;
-    width: 100%;
-}
-.form_button {
-    border: solid 2px #474544;
-    color: #474544;
-    cursor: pointer;
-    display: inline-block;
-    font-family: 'Helvetica', Arial, sans-serif;
-    font-size: 0.875em;
-    font-weight: bold;
-    outline: none;
-    padding: 20px 35px;
-    text-transform: uppercase;
-    -webkit-transition: all 0.3s;
-      -moz-transition: all 0.3s;
-      -ms-transition: all 0.3s;
-      -o-transition: all 0.3s;
-      transition: all 0.3s;
-  }
-  
-  #form_button:hover {
-    background: #474544;
-    color: #F2F3EB;
-  }
-}
-@media screen and (max-width: 768px) {
-  #container {
-    margin: 20px auto;
-    width: 95%;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  h1 {
-    font-size: 26px;
-  }
-  
-  .underline {
-    width: 68px;
-  }
-  
-  #form_button {
-    padding: 15px 25px;
-  }
-}
-
-@media screen and (max-width: 420px) {
-  h1 {
-    font-size: 18px;
-  }
-  
-  .icon {
-    height: 35px;
-    width: 35px;
-  }
-  
-  .underline {
-    width: 53px;
-  }
-  
-  input[type='text'], [type='email'], select, textarea {
-    font-size: 0.875em;
-  }
+      textarea {
+        line-height: 150%;
+        height: 150px;
+        resize: none;
+          width: 100%;
+      }      
+      .form_button {
+        border: solid 2px #474544;
+        color: #474544;
+        cursor: pointer;
+        display: inline-block;
+        font-family: 'Helvetica', Arial, sans-serif;
+        font-size: 0.875em;
+        font-weight: bold;
+        outline: none;
+        text-align: center;
+        padding: 20px 35px;
+        margin: 25px 0;
+        text-transform: uppercase;
+        -webkit-transition: all 0.5s;
+          -moz-transition: all 0.5s;
+          -ms-transition: all 0.5s;
+          -o-transition: all 0.5s;
+          transition: all 0.5s;
+          &:hover {
+            background: #474544;
+            color: #F2F3EB;
+          }
+      }
+  } 
 }
 .disable{
-  background: grey;
+  background: rgba(151, 151, 151, 0.603);
   pointer-events: none;
 }
 .enable{
   pointer-events: all;
   background: none;
+  &:hover{
+    box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  }
 }
 .poppup{
-  position: fixed;
-  top: 10px;
-  right: 10px;
   padding: 10px 10px;
   border-radius: 10px;
 }
