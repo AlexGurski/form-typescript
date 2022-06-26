@@ -5,9 +5,10 @@ import { Phone } from '../containers/phone';
 import { Message } from '../containers/message';
 import { Date } from '../containers/date';
 
-export const Form = () => {
+export const Form:React.FC<{toPoppup(date:object):void}> = props =>{
 
-  const ref = useRef<HTMLInputElement>(null)
+  const refButton = useRef<HTMLInputElement>(null)
+  const refForm = useRef<HTMLFormElement>(null)
   const [solve, setSolve] = useState<object>({
     name:{
       valid:false,
@@ -33,11 +34,11 @@ export const Form = () => {
 
   useEffect(()=>{
     if (lastValidation(solve)){
-          ref.current!.classList.add("enable");
-          ref.current!.classList.remove("disable");
+        refButton.current!.classList.add("enable");
+        refButton.current!.classList.remove("disable");
     } else{
-          ref.current!.classList.add("disable");
-          ref.current!.classList.remove("enable");
+        refButton.current!.classList.add("disable");
+        refButton.current!.classList.remove("enable");
     }
     },[solve])
 
@@ -52,6 +53,7 @@ export const Form = () => {
     }
     
   async function send() {
+    try{   
     const response = await fetch('/', {
       method: 'POST',
       headers: {
@@ -63,19 +65,33 @@ export const Form = () => {
     const responseOBJ = JSON.parse(responseText)
 
    if (response.status===200){
-    if (responseOBJ.status){
-        console.log(`it's OK, your JSON is ${responseOBJ.text}`);
-    } else{
-        console.log(`${responseOBJ.status} status,  ${responseOBJ.text}`)
+        if (responseOBJ.status){
+            props.toPoppup({
+                status:true,
+                text:responseOBJ.text
+            })
+            console.log(`it's OK, your JSON is ${responseOBJ.text}`);
+        } else{
+            props.toPoppup({
+                status:false,
+                text:responseOBJ.text
+            })
+            console.log(`${responseOBJ.status} status,  ${responseOBJ.text}`)
+        }  
     }
-}
     else{
         console.log(`${responseOBJ.status}status, ${responseText}`)
-    } 
-    
+    }
+}  catch (error) {
+    console.log ('server not found')
+    props.toPoppup({
+        status:false, 
+        text:'server not found'
+    })
+}
 }
   return (
-        <form action="/" method="post"   id="contact_form" noValidate >
+        <form action="/" method="post" ref={refForm} id="contact_form" noValidate >
           <Name setNameInSolve={(name:object)=>{setSolve({...solve, name})}}/>
           <Email setEmailInSolve={(email:object)=>{setSolve({...solve, email})}}/>
           <Phone setPhoneInSolve={(phone:object)=>{setSolve({...solve, phone})}}/>
@@ -83,7 +99,7 @@ export const Form = () => {
           <Message setMessageInSolve={(message:object)=>{setSolve({...solve, message})}}/>  
           <div className="submit">
             <input 
-            ref={ref}
+            ref={refButton}
             className='form_button' 
             onClick={send}
             defaultValue="Send" />

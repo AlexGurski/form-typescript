@@ -16,11 +16,8 @@ app.get('/', (req, res) => {
   res.sendFile(path.resolve(__dirname, './build', 'index.html'));
 });
 
-app.post('/', function (
-    request,response
-  ) {
-    //imitation of slowly server
-    setTimeout(()=>{
+app.post('/', function (request,response) {   
+    setTimeout(()=>{                        //imitation of slowly server
       if (!request.body){
         response.json({status:false, text:'NO DATA'}) 
       } else{
