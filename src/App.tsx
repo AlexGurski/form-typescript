@@ -13,8 +13,8 @@ function App() {
         <div className="underline"></div>
         <Form toPoppup={(date:object)=>{setStatus(date)}} toPreloader={(bool:boolean)=>{setPreload(bool)}}/>
       </div>
-   <Poppup status={status}/>
-   </>
+      <Poppup status={status}/>
+      </>
   );
 }
 

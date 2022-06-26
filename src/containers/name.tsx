@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-export const Name:React.FC<{setNameInSolve(name:object):void}> = props =>{
+export const Name:React.FC<{setNameInSolve(name:object):void, clear:boolean}> = props =>{
 
     const [text, setText] = useState<string>("")
     const [textError, setTextError] = useState<string>("input is empty")
@@ -20,6 +20,10 @@ export const Name:React.FC<{setNameInSolve(name:object):void}> = props =>{
         setStyle({opacity:0})  
     }
 
+    useEffect(()=>{
+        setText("")
+    },[props.clear])
+    
     useEffect(()=>{
             props.setNameInSolve({
                 valid:textError==='true'?true:false,

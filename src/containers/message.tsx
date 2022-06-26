@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect} from 'react';
 
-export const Message:React.FC<{setMessageInSolve(message:object):void}> = props =>{
+export const Message:React.FC<{setMessageInSolve(message:object):void, clear:boolean}> = props =>{
   const ref = useRef<HTMLTextAreaElement>(null)
   const [counter,setCounter] = useState<number>(300)
   const [style, setStyle] = useState<object>({opacity:0})
@@ -13,6 +13,10 @@ export const Message:React.FC<{setMessageInSolve(message:object):void}> = props 
         text:text
     })
   },[textError])
+
+  useEffect(()=>{
+    setText("")
+},[props.clear])
 
   const changeHandler = (event:React.ChangeEvent<HTMLTextAreaElement>) => {
     if (event.target.value.length < 300){

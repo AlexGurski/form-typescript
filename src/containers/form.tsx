@@ -9,6 +9,7 @@ export const Form:React.FC<{toPoppup(date:object):void, toPreloader(preload:bool
 
   const refButton = useRef<HTMLInputElement>(null)
   const refForm = useRef<HTMLFormElement>(null)
+  const [clear, setClear] = useState<boolean>(false)
   const [solve, setSolve] = useState<object>({
     name:{
       valid:false,
@@ -61,6 +62,7 @@ export const Form:React.FC<{toPoppup(date:object):void, toPreloader(preload:bool
                 status:true,
                 text:responseOBJ.text
             })
+            setClear(!clear)
            // console.log(`it's OK, your JSON is ${responseOBJ.text}`);
         } else{
             props.toPoppup({
@@ -88,11 +90,11 @@ props.toPreloader(false)
 }
   return (
         <form action="/" method="post" ref={refForm} id="contact_form" noValidate >          
-          <Name setNameInSolve={(name:object)=>{setSolve({...solve, name})}}/>
-          <Email setEmailInSolve={(email:object)=>{setSolve({...solve, email})}}/>
-          <Phone setPhoneInSolve={(phone:object)=>{setSolve({...solve, phone})}}/>
-          <Date setDateInSolve={(date:object)=>{setSolve({...solve, date})}}/>
-          <Message setMessageInSolve={(message:object)=>{setSolve({...solve, message})}}/>         
+          <Name setNameInSolve={(name:object)=>{setSolve({...solve, name})}} clear={clear}/>
+          <Email setEmailInSolve={(email:object)=>{setSolve({...solve, email})}} clear={clear}/>
+          <Phone setPhoneInSolve={(phone:object)=>{setSolve({...solve, phone})}} clear={clear}/>
+          <Date setDateInSolve={(date:object)=>{setSolve({...solve, date})}} clear={clear}/>
+          <Message setMessageInSolve={(message:object)=>{setSolve({...solve, message})}} clear={clear}/>         
             <input 
                 ref={refButton}
                 className='form_button' 
