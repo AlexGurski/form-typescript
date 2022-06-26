@@ -36,20 +36,33 @@ function App() {
     let rez = 0;
     Object.values(solve).forEach(e=>e.valid?rez=rez+1:null)
     if (rez===5){
-      ref.current!.classList.add("enable");
-      ref.current!.classList.remove("disable");
+      //ref.current!.classList.add("enable");
+      //ref.current!.classList.remove("disable");
     } else{
-      ref.current!.classList.add("disable");
-      ref.current!.classList.remove("enable");
+      //ref.current!.classList.add("disable");
+     // ref.current!.classList.remove("enable");
     }
   },[solve])
+
+  async function send() {
+    console.log('sdfsdf')
+    const response = await fetch('/', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(solve)
+  });
+    const responseText = await response.text();
+    console.log(responseText);
+}
 
   return (
     <div className="App">
       <div className="container">
         <h1>&bull; Keep in Touch &bull;</h1>
         <div className="underline"></div>
-        <form action="#" method="post" id="contact_form" noValidate >
+        <form action="/" method="post"   id="contact_form" noValidate >
           <Name setNameInSolve={(name:object)=>{setSolve({...solve, name})}}/>
           <Email setEmailInSolve={(email:object)=>{setSolve({...solve, email})}}/>
           <Phone setPhoneInSolve={(phone:object)=>{setSolve({...solve, phone})}}/>
@@ -59,7 +72,7 @@ function App() {
             <input 
             ref={ref}
             className='form_button' 
-            type="submit" 
+            onClick={send}
             value="Send" />
           </div>
         </form>
