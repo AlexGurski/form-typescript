@@ -16,6 +16,7 @@ export const Message:React.FC<{setMessageInSolve(message:object):void, clear:boo
 
   useEffect(()=>{
     setText("")
+    setCounter(300)
 },[props.clear])
 
   const changeHandler = (event:React.ChangeEvent<HTMLTextAreaElement>) => {

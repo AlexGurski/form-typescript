@@ -21,6 +21,7 @@ button, input, select, textarea {
   margin: 60px auto 5px;
   position: relative;
   @media screen and (max-width: 555px) {
+      margin: 20px auto;
       width: 95vw;
   }
   .preloader{
