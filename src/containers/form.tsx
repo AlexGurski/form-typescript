@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { Name } from './name';
-import { Email } from './email';
-import { Phone } from './phone';
-import { Message } from './message';
-import { Date } from './date';
+import { Name } from './inputs/name';
+import { Email } from './inputs/email';
+import { Phone } from './inputs/phone';
+import { Message } from './inputs/message';
+import { Date } from './inputs/date';
 import { lastValidation, JSONtoSend } from '../modules/validation';
 export const Form:React.FC<{toPoppup(date:object):void, toPreloader(preload:boolean):void}> = props =>{
 
